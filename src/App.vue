@@ -1,5 +1,5 @@
 <template>
-  <img alt="Vue logo" src="./assets/puregold.png">
+  <!--<img alt="Vue logo" src="./assets/puregold.png">-->
   <SignUp />
   
 </template>
