@@ -1,6 +1,6 @@
 <template>
      <AppHeader />
-    <h2>Welcome</h2>
+    <h2>Update Store</h2>
    
 </template>
 
@@ -8,7 +8,7 @@
 import AppHeader from './AppHeader.vue'
 
 export default {
-    name: 'HomePage',
+    name: 'UpdateStore',
     components: {
         AppHeader
     }
