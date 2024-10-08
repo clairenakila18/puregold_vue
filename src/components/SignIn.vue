@@ -1,16 +1,16 @@
 <template>
-    <div class="signup-container">
+    <div class="signin-container">
         <img class="logo" src="../assets/puregold.png" />
-        <h1>Sign Up</h1>
+        <h1>Sign In</h1>
 
-        <div class="signup">
-            <input type="text" v-model="name" placeholder="Enter Name" />
+        <div class="signin">
+          
             <input type="text" v-model="email" placeholder="Enter Email" />
             <input type="password" v-model="password" placeholder="Enter Password" />
-            <button v-on:click="signUp">Sign Up</button>
+            <button v-on:click="signIn">Sign In</button>
             <p class="login-link">
-                Already have an account? 
-                <a href="/signin">Sign In</a>
+                Don't have an account? 
+                <a href="/">Sign Up</a>
             </p>
         </div>
     </div>
@@ -20,7 +20,7 @@
 //import axios from 'axios'; 
 
 export default {
-    name: 'SignUp',
+    name: 'SignIn',
     data() {
         return {
             name: '',
@@ -29,18 +29,18 @@ export default {
         };
     },
     methods: {
-    async signUp() {
+    async signIn() {
         try {
             // Simulating a successful sign-up
             const simulatedResponse = { status: 201 }; // Simulated response
             if (simulatedResponse.status === 201) {
-                alert("Sign Up Successful");
+                alert("Sign In Successful");
                 // Redirect to Sign In page
-                this.$router.push({ name: 'SignIn' }); // Update with your actual route name for SignIn
+                this.$router.push({ name: 'HomePage' }); // Update with your actual route name for SignIn
             }
         } catch (error) {
-            console.error("Sign Up Error:", error);
-            alert("Sign Up Failed");
+            console.error("Sign In Error:", error);
+            alert("Sign In Failed");
         }
     }
 }
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style>
-.signup-container {
+.signin-container {
     width: 400px;
     margin: 0 auto;
     text-align: center;
@@ -64,7 +64,7 @@ export default {
     margin-bottom: 20px;
 }
 
-.signup input {
+.signin input {
     width: 100%;
     height: 40px;
     padding: 4px;
@@ -73,7 +73,7 @@ export default {
     border-radius: 5px;
 }
 
-.signup button {
+.signin button {
     width: 100%;
     height: 40px;
     border: 1px solid green;
@@ -83,12 +83,14 @@ export default {
     border-radius: 5px;
 }
 
-.signup button:hover {
+.signin button:hover { /* Correctly place the hover style here */
     background-color: darkgreen;
 }
+
 .login-link {
     margin-top: 40px;
 }
+
 .login-link a {
     color: green;
 }

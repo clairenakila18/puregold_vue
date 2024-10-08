@@ -1,18 +1,20 @@
 <template>
   <!--<img alt="Vue logo" src="./assets/puregold.png">-->
-  <SignUp />
+  
+  <router-view />
   
 </template>
 
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
-import SignUp from './components/SignUp.vue'
+//import SignUp from './components/SignUp.vue'
+//import Home from './components/Home.vue'
+
 
 export default {
   name: 'App',
-  components: {
-    SignUp
-  }
+
+  
 }
 </script>
 
