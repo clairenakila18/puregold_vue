@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'; // Correct method n
 import SignUp from './components/SignUp.vue';  
 import SignIn from './components/SignIn.vue';  
 import HomePage from './components/HomePage.vue';      // Import Home component
-import AddStore from './components/AddStore.vue';
-import UpdateStore from './components/UpdateStore.vue';
+//import AddStore from './components/Stores/AddStore.vue';
+//import UpdateStore from './src/components/Stores/UpdateStore.vue';
 
 const routes = [
     {
@@ -21,16 +21,17 @@ const routes = [
         component: HomePage,
         path: '/homepage'
     },
-    {
+   /* {
         name: 'AddStore',
         component: AddStore,
         path: '/addstore'
-    },
+    },*/
+    /*
     {
         name: 'UpdateStore',
         component: UpdateStore,
         path: '/updatestore'
-    }
+    }*/
 ];
 
 const router = createRouter({

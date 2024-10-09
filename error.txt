@@ -1,0 +1,5 @@
+netstat -ano | findstr :1337
+taskkill /PID 16444 /F
+
+
+npm install vue-toastification@next

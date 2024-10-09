@@ -4,7 +4,6 @@
         <h1>Sign In</h1>
 
         <div class="signin">
-          
             <input type="text" v-model="email" placeholder="Enter Email" />
             <input type="password" v-model="password" placeholder="Enter Password" />
             <button v-on:click="signIn">Sign In</button>
@@ -17,33 +16,40 @@
 </template>
 
 <script>
-//import axios from 'axios'; 
+import axios from 'axios'; 
 
 export default {
     name: 'SignIn',
     data() {
         return {
-            name: '',
             email: '',
             password: ''
         };
     },
     methods: {
-    async signIn() {
-        try {
-            // Simulating a successful sign-up
-            const simulatedResponse = { status: 201 }; // Simulated response
-            if (simulatedResponse.status === 201) {
-                alert("Sign In Successful");
-                // Redirect to Sign In page
-                this.$router.push({ name: 'HomePage' }); // Update with your actual route name for SignIn
+        async signIn() {
+            try {
+                // Assuming your authentication API endpoint is different
+                let result = await axios.post("http://localhost:1337/api/customers", {
+                    email: this.email,
+                    password: this.password
+                });
+                console.warn(result);
+                if (result.status === 200) { // Adjusted to check for successful response
+                    alert("Sign In Successful");
+                    localStorage.setItem("user-info", JSON.stringify(result.data));
+                    
+                    // Redirect to the homepage after 1 second
+                    setTimeout(() => {
+                        this.$router.push('/homepage');
+                    }, 1000);
+                }
+            } catch (error) {
+                console.error("Sign In Error:", error.response ? error.response.data : error.message);
+                alert("Failed to Sign In: Please make sure you entered your correct account during sign up."); // Updated error message
             }
-        } catch (error) {
-            console.error("Sign In Error:", error);
-            alert("Sign In Failed");
         }
     }
-}
 };
 </script>
 
@@ -83,7 +89,7 @@ export default {
     border-radius: 5px;
 }
 
-.signin button:hover { /* Correctly place the hover style here */
+.signin button:hover { 
     background-color: darkgreen;
 }
 

@@ -1,8 +1,8 @@
 <template>
     <div class="nav">
      <router-link to="homepage">Home</router-link>
-     <router-link  to="addstore">Add Store</router-link>
-     <router-link  to="updatestore">Update Store</router-link>
+     <router-link  to="addstore"> Stores</router-link>
+     <router-link  to="signIn"> Products</router-link>
      <a v-on:click="logout" href="#">Logout</a>
  
  

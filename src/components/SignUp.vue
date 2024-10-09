@@ -1,3 +1,5 @@
+
+
 <template>
     <div class="signup-container">
         <img class="logo" src="../assets/puregold.png" />
@@ -5,6 +7,7 @@
 
         <div class="signup">
             <input type="text" v-model="name" placeholder="Enter Name" />
+            <input type="text" v-model="address" placeholder="Enter Address" />
             <input type="text" v-model="email" placeholder="Enter Email" />
             <input type="password" v-model="password" placeholder="Enter Password" />
             <button v-on:click="signUp">Sign Up</button>
@@ -17,33 +20,45 @@
 </template>
 
 <script>
-//import axios from 'axios'; 
+import axios from 'axios'; // Import axios
 
 export default {
     name: 'SignUp',
     data() {
         return {
             name: '',
+            address: '',
             email: '',
             password: ''
         };
     },
     methods: {
-    async signUp() {
-        try {
-            // Simulating a successful sign-up
-            const simulatedResponse = { status: 201 }; // Simulated response
-            if (simulatedResponse.status === 201) {
-                alert("Sign Up Successful");
-                // Redirect to Sign In page
-                this.$router.push({ name: 'SignIn' }); // Update with your actual route name for SignIn
+        async signUp() {
+            try {
+                let result = await axios.post("http://localhost:1337/api/customers", {
+                    data: {
+                        name: this.name,
+                        address: this.address,
+                        email: this.email,
+                        password: this.password
+                    }
+                });
+                console.warn(result);
+                if (result.status === 201) {
+                    alert("Sign Up Successful");
+                    localStorage.setItem("user-info", JSON.stringify(result.data));
+                    
+                    // Redirect to the Sign In page after 1 second
+                    setTimeout(() => {
+                        this.$router.push('/signin'); // Assuming your sign-in route is '/signin'
+                    }, 1000);
+                }
+            } catch (error) {
+                console.error("Sign Up Error:", error.response ? error.response.data : error.message);
+                alert("Failed to Sign Up: " + (error.response ? error.response.data.message : error.message));
             }
-        } catch (error) {
-            console.error("Sign Up Error:", error);
-            alert("Sign Up Failed");
         }
     }
-}
 };
 </script>
 
