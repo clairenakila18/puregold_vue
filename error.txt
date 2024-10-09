@@ -3,3 +3,5 @@ taskkill /PID 16444 /F
 
 
 npm install vue-toastification@next
+
+npm install bcrypt

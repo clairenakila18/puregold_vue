@@ -28,27 +28,27 @@ export default {
     },
     methods: {
         async signIn() {
-            try {
-                // Assuming your authentication API endpoint is different
-                let result = await axios.post("http://localhost:1337/api/customers", {
-                    email: this.email,
-                    password: this.password
-                });
-                console.warn(result);
-                if (result.status === 200) { // Adjusted to check for successful response
-                    alert("Sign In Successful");
-                    localStorage.setItem("user-info", JSON.stringify(result.data));
-                    
-                    // Redirect to the homepage after 1 second
-                    setTimeout(() => {
-                        this.$router.push('/homepage');
-                    }, 1000);
-                }
-            } catch (error) {
-                console.error("Sign In Error:", error.response ? error.response.data : error.message);
-                alert("Failed to Sign In: Please make sure you entered your correct account during sign up."); // Updated error message
-            }
-        }
+    try {
+        console.log('Email:', this.email);
+        console.log('Password:', this.password);
+
+        const response = await axios.post('http://localhost:1337/api/logins', {
+            email: this.email,
+            password: this.password,
+        });
+
+        const user = response.data.user;
+        alert("Sign In Successful");
+        localStorage.setItem("user-info", JSON.stringify(user));
+        
+        setTimeout(() => {
+            this.$router.push('/homepage');
+        }, 1000);
+    } catch (error) {
+        console.error("Sign In Error:", error.response ? error.response.data : error.message);
+        alert("Failed to Sign In: " + (error.response ? error.response.data.message : error.message));
+    }
+}
     }
 };
 </script>

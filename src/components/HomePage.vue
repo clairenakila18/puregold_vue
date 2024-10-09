@@ -1,6 +1,6 @@
 <template>
      <AppHeader />
-    <h2>Welcome</h2>
+    <h2>Welcome PureGold Shoppers</h2>
    
 </template>
 
